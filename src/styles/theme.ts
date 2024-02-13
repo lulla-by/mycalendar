@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
-const forestTheme: DefaultTheme = {
+const forest: DefaultTheme = {
   colors: {
     main: '#12372A',
     median: '#436850',
@@ -9,7 +9,7 @@ const forestTheme: DefaultTheme = {
   },
 };
 
-const seaTheme: DefaultTheme = {
+const sea: DefaultTheme = {
   colors: {
     main: '#78C1F3',
     median: '#9BE8D8',
@@ -17,7 +17,7 @@ const seaTheme: DefaultTheme = {
     base: '#F8FDCF',
   },
 };
-const pinkTheme: DefaultTheme = {
+const pink: DefaultTheme = {
   colors: {
     main: '#FF78C4',
     median: '#E1AEFF',
@@ -26,4 +26,4 @@ const pinkTheme: DefaultTheme = {
   },
 };
 
-export { forestTheme, seaTheme ,pinkTheme};
+export { forest, sea ,pink};
