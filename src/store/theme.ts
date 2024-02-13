@@ -8,6 +8,6 @@ export interface IContentTypes {
 export const themeState = atom<IContentTypes>({
   key: 'theme',
   default: {
-    name: 'forestTheme',
+    name: 'forest',
   },
 });

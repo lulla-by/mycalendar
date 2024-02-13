@@ -3,7 +3,7 @@ import Header from './Header';
 import styled, { ThemeProvider } from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { themeState } from '../store/theme';
-import { forestTheme, seaTheme, pinkTheme } from '../styles/theme';
+import { forest, sea, pink } from '../styles/theme';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -12,14 +12,14 @@ const Layout = (props: LayoutProps) => {
   const content = useRecoilValue(themeState);
   const getTheme = () => {
     switch (content.name) {
-      case 'forestTheme':
-        return forestTheme;
-      case 'seaTheme':
-        return seaTheme;
-      case 'pinkTheme':
-        return pinkTheme;
+      case 'forest':
+        return forest;
+      case 'sea':
+        return sea;
+      case 'pink':
+        return pink;
       default:
-        return forestTheme;
+        return forest;
     }
   };
 
