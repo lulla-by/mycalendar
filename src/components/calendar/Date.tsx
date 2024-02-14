@@ -3,11 +3,17 @@ import { DateContext } from '../../context/DateContext';
 import styled from 'styled-components';
 import DateCard from './DateCard';
 
+interface MonthDataObject {
+  state: string;
+  date: number;
+  today?: boolean;
+}
+
 const DateRender = () => {
   const { propsMonth: month, propsYear: year } = useContext(DateContext);
 
   // 이번달 정보
-  const currentMonthArray: number[] = [];
+  const currentMonthArray: MonthDataObject[] = [];
   // 이번달 시작일
   const currentMonthLast = new Date(year, month, 0);
   const currentMonthLastDate = currentMonthLast.getDate();
@@ -17,21 +23,26 @@ const DateRender = () => {
   const currentMonthFirstDate = currentMonthFirst.getDay();
 
   // 이전달 정보
-  const prevMonthArray: number[] = [];
+  const prevMonthArray: MonthDataObject[] = [];
   // 이전달 마지막일
   const previousMonthLast = new Date(year, month - 1, 0);
   const previousMonthLastDate = previousMonthLast.getDate();
+
+  const today = new Date().getDate();
+  console.log(today);
 
   for (
     let i = previousMonthLastDate - currentMonthFirstDate + 1;
     i <= previousMonthLastDate;
     i++
   ) {
-    prevMonthArray.push(i);
+    prevMonthArray.push({ state: 'prev', date: i });
   }
 
   for (let i = 1; i <= currentMonthLastDate; i++) {
-    currentMonthArray.push(i);
+    today === i
+      ? currentMonthArray.push({ state: 'current', date: i, today: true })
+      : currentMonthArray.push({ state: 'current', date: i });
   }
 
   // 이전달과 이번달 배열 합치기
@@ -41,13 +52,15 @@ const DateRender = () => {
   // 다음달 정보 추가
   for (let i = 1; i < 7; i++) {
     if (newArr.length % 7 !== 0) {
-      newArr.push(i);
+      newArr.push({ state: 'next', date: i });
     }
   }
   return (
     <Container>
       {newArr.map((date) => (
-        <DateCard date={date} />
+        <>
+          <DateCard props={date} />
+        </>
       ))}
     </Container>
   );
