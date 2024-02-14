@@ -66,4 +66,9 @@ border-radius: 5px;
   main {
     display: flex;
   }
+
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

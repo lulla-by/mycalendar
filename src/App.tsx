@@ -8,10 +8,10 @@ function App() {
   return (
     <Fragment>
       <RecoilRoot>
-        <Layout>
-          <Calendar />
-          <MemoBoard />
-        </Layout>
+          <Layout>
+            <Calendar />
+            <MemoBoard />
+          </Layout>
       </RecoilRoot>
     </Fragment>
   );
