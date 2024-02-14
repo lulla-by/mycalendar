@@ -6,7 +6,8 @@ import DateCard from './DateCard';
 interface MonthDataObject {
   state: string;
   date: number;
-  today?: boolean;
+  year: number;
+  month: number;
 }
 
 const DateRender = () => {
@@ -29,20 +30,19 @@ const DateRender = () => {
   const previousMonthLastDate = previousMonthLast.getDate();
 
   const today = new Date().getDate();
-  console.log(today);
 
   for (
     let i = previousMonthLastDate - currentMonthFirstDate + 1;
     i <= previousMonthLastDate;
     i++
   ) {
-    prevMonthArray.push({ state: 'prev', date: i });
+    prevMonthArray.push({ state: 'prev', date: i, year, month });
   }
 
   for (let i = 1; i <= currentMonthLastDate; i++) {
     today === i
-      ? currentMonthArray.push({ state: 'current', date: i, today: true })
-      : currentMonthArray.push({ state: 'current', date: i });
+      ? currentMonthArray.push({ state: 'current', date: i, year, month })
+      : currentMonthArray.push({ state: 'current', date: i, year, month });
   }
 
   // 이전달과 이번달 배열 합치기
@@ -52,7 +52,7 @@ const DateRender = () => {
   // 다음달 정보 추가
   for (let i = 1; i < 7; i++) {
     if (newArr.length % 7 !== 0) {
-      newArr.push({ state: 'next', date: i });
+      newArr.push({ state: 'next', date: i, year, month });
     }
   }
   return (

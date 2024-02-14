@@ -5,23 +5,35 @@ interface DateCard {
   props: {
     date: number;
     state: string;
-    today?: boolean;
+    year: number;
+    month: number;
   };
 }
 
 type StyledProps = Pick<DateCard, 'props'>;
 
+interface StyledProps2 extends StyledProps {
+  isToday:boolean
+}
 const DateCard = ({ props }: DateCard) => {
+  const propsNow = new Date(props.year, props.month - 1, props.date);
+  const now = new Date();
+  const isToday =
+    propsNow.getFullYear() === now.getFullYear() &&
+    propsNow.getMonth() === now.getMonth() &&
+    propsNow.getDate() === now.getDate();
   return (
-    <CardContainer props={props}>
-      <DateText props={props}>{props.date}</DateText>
+    <CardContainer  isToday={isToday} props={props}>
+      <DateText props={props}>
+        {props.date}
+      </DateText>
     </CardContainer>
   );
 };
 
 export default DateCard;
 
-const CardContainer = styled.div<StyledProps>`
+const CardContainer = styled.div<StyledProps2>`
   height: 100%;
   display: inline-block;
   background-color: ${({ props, theme }) =>
@@ -34,10 +46,11 @@ const CardContainer = styled.div<StyledProps>`
     props.state === 'prev' || props.state === 'next'
       ? '#868e96'
       : theme.colors.main};
+  border: ${({ isToday }) => (isToday ? '3px solid black' : null)};
 `;
 
 const DateText = styled.p<StyledProps>`
-display:block;
+  display: block;
   background-color: ${({ theme, props }) =>
     props.state === 'prev' || props.state === 'next'
       ? null
