@@ -47,6 +47,7 @@ const CardContainer = styled.div<StyledProps2>`
   border: ${({ isToday,theme  }) => (isToday ? `3px solid ${theme.colors.main}` : null)};
   border-radius: ${({ isToday}) => (isToday ? `5px` : null)};
   box-shadow: 1px 1px 2px 1px #ced4da;
+  border-radius:5px
 `;
 
 const DateText = styled.p<StyledProps>`
@@ -64,5 +65,5 @@ const DateText = styled.p<StyledProps>`
   text-align: center;
   line-height: 30px;
   font-weight: 600;
-  border-radius: 0 0 5px 0;
+  border-radius: 5px 0 5px 0;
 `;
