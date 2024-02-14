@@ -4,25 +4,25 @@ const forest: DefaultTheme = {
   colors: {
     main: '#12372A',
     median: '#436850',
-    light: '#ADBC9F',
-    base: '#FBFADA',
+    light: '#99BC85',
+    base: '#E1F0DA',
   },
 };
 
 const sea: DefaultTheme = {
   colors: {
-    main: '#78C1F3',
-    median: '#9BE8D8',
-    light: '#E2F6CA',
-    base: '#F8FDCF',
+    main: '#40A2E3',
+    median: '#40A2D8',
+    light: '#BBE2EC',
+    base: '#FFF6E9',
   },
 };
 const pink: DefaultTheme = {
   colors: {
-    main: '#FF78C4',
-    median: '#E1AEFF',
-    light: '#FFBDF7',
-    base: '#FFECEC',
+    main: '#D14D72',
+    median: '#FFABAB',
+    light: '#FCC8D1',
+    base: '#FEF2F4',
   },
 };
 
