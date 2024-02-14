@@ -29,10 +29,12 @@ export default DaysRender;
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  height: 5%;
 `;
 
 const DaysCard = styled.div`
-  padding: 10px;
+  padding: 5px;
+  align-items: center;
   border-top: 1px solid #dee2e6;
   border-right: 1px solid #dee2e6;
   background-color: ${({ theme }) => theme.colors.base};

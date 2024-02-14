@@ -16,5 +16,7 @@ export default Calendar;
 
 const Container = styled.div`
 width: 850px;
+height: 600px;
+/* background-color: aliceblue; */
 text-align: center;
 `;

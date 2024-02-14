@@ -11,5 +11,6 @@ export default MemoBoard
 
 const Container = styled.div`
   width: 350px;
-  background-color: lightblue;
+  height: 600px;
+background-color: aliceblue;
 `
