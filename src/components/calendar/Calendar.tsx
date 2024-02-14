@@ -15,7 +15,6 @@ const Calendar = () => {
 export default Calendar;
 
 const Container = styled.div`
-background-color: lightgreen;
 width: 850px;
 text-align: center;
 `;

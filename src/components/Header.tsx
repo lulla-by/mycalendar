@@ -126,8 +126,9 @@ const ThemeUL = styled.ul`
 `;
 
 const MoveYearButton = styled.button`
-  background-color: white;
-  border: 1px solid #dee2e6;
+  background-color:${({ theme }) => theme.colors.median} ;
+  color:white;
+  border: none;
   border-radius: 5px;
   width: 40px;
   height: 20px;
