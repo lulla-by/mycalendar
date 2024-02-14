@@ -73,4 +73,5 @@ const Container = styled.div`
   grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: 1fr;
   height: 95%;
+  gap: 2px;
 `;

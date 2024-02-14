@@ -13,7 +13,7 @@ interface DateCard {
 type StyledProps = Pick<DateCard, 'props'>;
 
 interface StyledProps2 extends StyledProps {
-  isToday:boolean
+  isToday: boolean;
 }
 const DateCard = ({ props }: DateCard) => {
   const propsNow = new Date(props.year, props.month - 1, props.date);
@@ -23,10 +23,8 @@ const DateCard = ({ props }: DateCard) => {
     propsNow.getMonth() === now.getMonth() &&
     propsNow.getDate() === now.getDate();
   return (
-    <CardContainer  isToday={isToday} props={props}>
-      <DateText props={props}>
-        {props.date}
-      </DateText>
+    <CardContainer isToday={isToday} props={props}>
+      <DateText props={props}>{props.date}</DateText>
     </CardContainer>
   );
 };
@@ -46,7 +44,9 @@ const CardContainer = styled.div<StyledProps2>`
     props.state === 'prev' || props.state === 'next'
       ? '#868e96'
       : theme.colors.main};
-  border: ${({ isToday }) => (isToday ? '3px solid black' : null)};
+  border: ${({ isToday,theme  }) => (isToday ? `3px solid ${theme.colors.main}` : null)};
+  border-radius: ${({ isToday}) => (isToday ? `5px` : null)};
+  box-shadow: 1px 1px 2px 1px #ced4da;
 `;
 
 const DateText = styled.p<StyledProps>`
