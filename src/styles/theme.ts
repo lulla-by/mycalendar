@@ -20,7 +20,7 @@ const sea: DefaultTheme = {
 const pink: DefaultTheme = {
   colors: {
     main: '#D14D72',
-    median: '#FFABAB',
+    median: '#ff8787',
     light: '#FCC8D1',
     base: '#FEF2F4',
   },
