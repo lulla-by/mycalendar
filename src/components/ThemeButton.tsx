@@ -16,7 +16,6 @@ const Button = ({ text, color, clickEvent }: ButtonProps) => {
       color={color}
       onClick={() => clickEvent && clickEvent(theme)}
     >
-      {text}
     </ButtonContainer>
   );
 };
