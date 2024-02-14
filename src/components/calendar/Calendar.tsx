@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import DaysRender from './DaysRender';
-import DateRender from './DateRender';
+import DaysRender from './Days';
+import DateRender from './Date';
 
 const Calendar = () => {
 
