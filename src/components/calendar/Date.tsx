@@ -64,11 +64,6 @@ const DateRender = () => {
       newArr.push({ state: 'next', date: i, year:nextMonthLastYear, month:nextMonthLastMonth });
     }
   }
-
-  const div =newArr.map((date) => 
-     `${date.year}/${date.month}/${date.date}`
-  )
-  console.log(div)
   return (
     <Container>
       {newArr.map((date) => (

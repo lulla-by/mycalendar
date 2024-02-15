@@ -10,8 +10,6 @@ const DaysRender = () => {
     daysArr.push(<div key={i}>{days[i]}</div>);
   }
 
-  console.log(daysArr);
-
   return (
     <Container>
       {daysArr.map((day, index) => (
