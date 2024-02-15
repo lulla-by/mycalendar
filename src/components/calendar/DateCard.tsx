@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import ModalPortal from './ModalPordal';
+import Modal from './Modal';
 
 interface DateCard {
   props: {
@@ -16,6 +18,16 @@ interface StyledProps2 extends StyledProps {
   isToday: boolean;
 }
 const DateCard = ({ props }: DateCard) => {
+  const [modal, setModal] = React.useState(false);
+
+  const handleCloseModal = () => {
+    setModal(false);
+  };
+
+  const handleOpenModal = () => {
+    setModal(true);
+  };
+
   const propsNow = new Date(props.year, props.month - 1, props.date);
   const now = new Date();
   const isToday =
@@ -23,9 +35,17 @@ const DateCard = ({ props }: DateCard) => {
     propsNow.getMonth() === now.getMonth() &&
     propsNow.getDate() === now.getDate();
   return (
-    <CardContainer isToday={isToday} props={props}>
-      <DateText props={props}>{props.date}</DateText>
-    </CardContainer>
+    <>
+      <CardContainer isToday={isToday} props={props} onClick={handleOpenModal}>
+        <DateText props={props}>{props.date}</DateText>
+      </CardContainer>
+
+      {modal && (
+        <ModalPortal>
+          <Modal onClose={handleCloseModal} data={`${props.year}${props.month}${props.date}`}/>
+        </ModalPortal>
+      )}
+    </>
   );
 };
 
@@ -44,10 +64,12 @@ const CardContainer = styled.div<StyledProps2>`
     props.state === 'prev' || props.state === 'next'
       ? '#868e96'
       : theme.colors.main};
-  border: ${({ isToday,theme  }) => (isToday ? `3px solid ${theme.colors.main}` : null)};
-  border-radius: ${({ isToday}) => (isToday ? `5px` : null)};
+  border: ${({ isToday, theme }) =>
+    isToday ? `3px solid ${theme.colors.main}` : null};
+  border-radius: ${({ isToday }) => (isToday ? `5px` : null)};
   box-shadow: 1px 1px 2px 1px #ced4da;
-  border-radius:5px
+  border-radius: 5px;
+  cursor: pointer;
 `;
 
 const DateText = styled.p<StyledProps>`
