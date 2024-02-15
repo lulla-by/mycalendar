@@ -28,7 +28,16 @@ const DateRender = () => {
   // 이전달 마지막일
   const previousMonthLast = new Date(year, month - 1, 0);
   const previousMonthLastDate = previousMonthLast.getDate();
-
+  const previousMonthLastYear = previousMonthLast.getFullYear();
+  const previousMonthLastMonth = previousMonthLast.getMonth()+1;
+  
+  
+  
+  // 다음달 정보
+  const nextMonthLast = new Date(year, month + 1, 0);
+  const nextMonthLastYear = nextMonthLast.getFullYear();
+  const nextMonthLastMonth = nextMonthLast.getMonth()+1;
+  
   const today = new Date().getDate();
 
   for (
@@ -36,7 +45,7 @@ const DateRender = () => {
     i <= previousMonthLastDate;
     i++
   ) {
-    prevMonthArray.push({ state: 'prev', date: i, year, month });
+    prevMonthArray.push({ state: 'prev', date: i, year:previousMonthLastYear, month:previousMonthLastMonth});
   }
 
   for (let i = 1; i <= currentMonthLastDate; i++) {
@@ -52,15 +61,21 @@ const DateRender = () => {
   // 다음달 정보 추가
   for (let i = 1; i < 7; i++) {
     if (newArr.length % 7 !== 0) {
-      newArr.push({ state: 'next', date: i, year, month });
+      newArr.push({ state: 'next', date: i, year:nextMonthLastYear, month:nextMonthLastMonth });
     }
   }
+
+  const div =newArr.map((date) => 
+     `${date.year}/${date.month}/${date.date}`
+  )
+  console.log(div)
   return (
     <Container>
       {newArr.map((date) => (
-        <>
-          <DateCard props={date} />
-        </>
+        <DateCard
+          key={`${date.year}/${date.month}/${date.date}`}
+          props={date}
+        />
       ))}
     </Container>
   );
