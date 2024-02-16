@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import TodoForm from './TodoForm';
 
 interface ModalProps {
   onClose: () => void;
@@ -12,7 +13,6 @@ interface List {
 }
 
 const Modal = ({ onClose, date }: ModalProps) => {
-  const [todo, setTodo] = useState('');
   const [list, setList] = useState<List[]>([]);
 
   useEffect(() => {
@@ -32,27 +32,13 @@ const Modal = ({ onClose, date }: ModalProps) => {
     return result;
   };
 
-  //랜덤 아이디 생성
+  // //랜덤 아이디 생성
   const generateUniqueId = () => {
     return Math.floor(Math.random() * 1000000);
   };
 
-  // 변화 감지
-  const changeHandeler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodo(e.target.value);
-  };
-
-  // 제출
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (todo.trim().length === 0) {
-      alert('할 일을 입력해주세요');
-      setTodo('');
-      return;
-    } else {
-      addTodo(todo);
-      setTodo('');
-    }
+  const handleFormSubmit = (todo: string) => {
+    addTodo(todo);
   };
 
   // 로컬스토리지에 추가
@@ -77,20 +63,7 @@ const Modal = ({ onClose, date }: ModalProps) => {
         ) : (
           <div>할일이 없습니다</div>
         )}
-        <form
-          onSubmit={(e) => {
-            submitHandler(e);
-          }}
-        >
-          <input
-            value={todo}
-            type="text"
-            onChange={(e) => {
-              changeHandeler(e);
-            }}
-          />
-          <button type="submit">할 일 추가</button>
-        </form>
+        <TodoForm onSubmit={handleFormSubmit} />
         <button onClick={onClose}>닫기</button>
       </ModalContent>
     </ModalContainer>
