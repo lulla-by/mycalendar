@@ -14,11 +14,10 @@ interface List {
 const Modal = ({ onClose, date }: ModalProps) => {
   const [todo, setTodo] = useState('');
   const [list, setList] = useState<List[]>([]);
-  
+
   useEffect(() => {
     fetchData();
   }, []);
-
 
   // 로컬스토리지에서 데이터 패칭
   const fetchData = () => {
@@ -38,7 +37,6 @@ const Modal = ({ onClose, date }: ModalProps) => {
     return Math.floor(Math.random() * 1000000);
   };
 
-
   // 변화 감지
   const changeHandeler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
@@ -47,10 +45,15 @@ const Modal = ({ onClose, date }: ModalProps) => {
   // 제출
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addTodo(todo);
-    setTodo('');
+    if (todo.trim().length === 0) {
+      alert('할 일을 입력해주세요');
+      setTodo('');
+      return;
+    } else {
+      addTodo(todo);
+      setTodo('');
+    }
   };
-
 
   // 로컬스토리지에 추가
   const addTodo = (newTodo: string) => {
@@ -61,8 +64,6 @@ const Modal = ({ onClose, date }: ModalProps) => {
     setList(updatedList);
     localStorage.setItem(date, JSON.stringify(updatedList));
   };
-
-
 
   return (
     <ModalContainer>
