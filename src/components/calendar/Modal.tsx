@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoForm from './TodoForm';
+import TodoList from './TodoList';
 
 interface ModalProps {
   onClose: () => void;
@@ -45,23 +46,25 @@ const Modal = ({ onClose, date }: ModalProps) => {
   const addTodo = (newTodo: string) => {
     const updatedList: List[] = [
       ...list,
-      { id: generateUniqueId(), data: newTodo },
+      { id: generateUniqueId(), data: newTodo},
     ];
     setList(updatedList);
     localStorage.setItem(date, JSON.stringify(updatedList));
+  };
+
+  const removeTodo = (id: number) => {
+    const filteredData = list.filter((item) => item.id !== id);
+    setList(filteredData);
+    localStorage.setItem(date, JSON.stringify(filteredData));
   };
 
   return (
     <ModalContainer>
       <ModalContent>
         {list.length !== 0 ? (
-          <div>
-            {list.map((item) => (
-              <div key={item.id}>{item.data}</div>
-            ))}
-          </div>
+          <TodoList list={list} removeTodo={removeTodo} />
         ) : (
-          <div>할일이 없습니다</div>
+          <div>할 일이 없습니다.</div>
         )}
         <TodoForm onSubmit={handleFormSubmit} />
         <button onClick={onClose}>닫기</button>
@@ -73,7 +76,7 @@ const Modal = ({ onClose, date }: ModalProps) => {
 export default Modal;
 
 const ModalContainer = styled.div`
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   left: 0;
   top: 0;
@@ -82,6 +85,7 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(0.1rem);
 `;
 
 const ModalContent = styled.div`
@@ -89,4 +93,5 @@ const ModalContent = styled.div`
   padding: 1rem;
   width: 400px;
   height: 500px;
+  border-radius: 5px;
 `;
