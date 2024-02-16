@@ -65,7 +65,7 @@ const Modal = ({ onClose, date }: ModalProps) => {
 
 
   return (
-    <ModalContainer onClick={onClose}>
+    <ModalContainer>
       <ModalContent>
         {list.length !== 0 ? (
           <div>
