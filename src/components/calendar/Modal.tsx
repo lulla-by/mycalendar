@@ -11,6 +11,7 @@ interface ModalProps {
 interface List {
   id: number;
   data: string;
+  isCheck: boolean;
 }
 
 const Modal = ({ onClose, date }: ModalProps) => {
@@ -46,7 +47,7 @@ const Modal = ({ onClose, date }: ModalProps) => {
   const addTodo = (newTodo: string) => {
     const updatedList: List[] = [
       ...list,
-      { id: generateUniqueId(), data: newTodo},
+      { id: generateUniqueId(), data: newTodo, isCheck: false },
     ];
     setList(updatedList);
     localStorage.setItem(date, JSON.stringify(updatedList));
@@ -58,11 +59,23 @@ const Modal = ({ onClose, date }: ModalProps) => {
     localStorage.setItem(date, JSON.stringify(filteredData));
   };
 
+  const isDoneTodo = (id: number, isDone: boolean) => {
+    const newData = list.map((item) =>
+      item.id === id ? { ...item, isCheck: isDone } : item
+    );
+    setList(newData);
+    localStorage.setItem(date, JSON.stringify(newData));
+  };
+
   return (
     <ModalContainer>
       <ModalContent>
         {list.length !== 0 ? (
-          <TodoList list={list} removeTodo={removeTodo} />
+          <TodoList
+            list={list}
+            removeTodo={removeTodo}
+            isDoneTodo={isDoneTodo}
+          />
         ) : (
           <div>할 일이 없습니다.</div>
         )}

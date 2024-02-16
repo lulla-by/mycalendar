@@ -4,14 +4,25 @@ interface TodoProps {
   item: {
     data: string;
     id: number;
+    isCheck: boolean;
   };
   removeTodo: (id: number) => void;
+  isDoneTodo: (id: number, isDone: boolean) => void;
 }
 
-const Todo = ({ item, removeTodo }: TodoProps) => {
+interface StyledProps {
+  isChecked: boolean;
+}
+const Todo = ({ item, removeTodo, isDoneTodo }: TodoProps) => {
   return (
     <TodoContainer>
-      <TodoText>{item.data}</TodoText>
+      <input
+        type="checkbox"
+        onChange={(e) => {
+          isDoneTodo(item.id, e.target.checked);
+        }}
+      />
+      <TodoText isChecked={item.isCheck}>{item.data}</TodoText>
       <button
         onClick={() => {
           removeTodo(item.id);
@@ -25,9 +36,11 @@ const Todo = ({ item, removeTodo }: TodoProps) => {
 
 export default Todo;
 const TodoContainer = styled.li`
+  display: flex;
   background-color: lightblue;
   text-decoration: none;
 `;
 
-const TodoText = styled.p`
+const TodoText = styled.p<StyledProps>`
+  text-decoration: ${({ isChecked }) => (isChecked ? 'line-through' : 'nu')};
 `;
