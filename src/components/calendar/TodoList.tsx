@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface List {
   id: number;
   data: string;
-  isCheck:boolean;
+  ischeck:boolean;
 }
 interface TodoListProps {
   list: List[];

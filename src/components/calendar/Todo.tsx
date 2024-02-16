@@ -4,14 +4,14 @@ interface TodoProps {
   item: {
     data: string;
     id: number;
-    isCheck: boolean;
+    ischeck: boolean;
   };
   removeTodo: (id: number) => void;
   isDoneTodo: (id: number, isDone: boolean) => void;
 }
 
 interface StyledProps {
-  isChecked: boolean;
+  ischeck: string;
 }
 const Todo = ({ item, removeTodo, isDoneTodo }: TodoProps) => {
   return (
@@ -22,7 +22,7 @@ const Todo = ({ item, removeTodo, isDoneTodo }: TodoProps) => {
           isDoneTodo(item.id, e.target.checked);
         }}
       />
-      <TodoText isChecked={item.isCheck}>{item.data}</TodoText>
+      <TodoText ischeck={item.ischeck.toString()}>{item.data}</TodoText>
       <button
         onClick={() => {
           removeTodo(item.id);
@@ -42,5 +42,5 @@ const TodoContainer = styled.li`
 `;
 
 const TodoText = styled.p<StyledProps>`
-  text-decoration: ${({ isChecked }) => (isChecked ? 'line-through' : 'nu')};
+  text-decoration: ${({ ischeck }) => (ischeck ==="true"? 'line-through' : 'none')};
 `;
