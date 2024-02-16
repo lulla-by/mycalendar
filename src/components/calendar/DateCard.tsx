@@ -42,7 +42,7 @@ const DateCard = ({ props }: DateCard) => {
 
       {modal && (
         <ModalPortal>
-          <Modal onClose={handleCloseModal} data={`${props.year}${props.month}${props.date}`}/>
+          <Modal onClose={handleCloseModal} date={`${props.year}${props.month}${props.date}`}/>
         </ModalPortal>
       )}
     </>
