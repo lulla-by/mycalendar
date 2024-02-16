@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ModalPortal from './ModalPordal';
+import ModalPortal from './ModalPortal';
 import Modal from './Modal';
 
 interface DateCard {
