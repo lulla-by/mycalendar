@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
+interface List {
+  id: number;
+  data: string;
+  ischeck: boolean;
+}
+
 interface ModalProps {
   onClose: () => void;
   date: string;
+  list: List[];
+  updateList: (data: List[]) => void;
 }
 
 interface List {
@@ -14,26 +21,7 @@ interface List {
   ischeck: boolean;
 }
 
-const Modal = ({ onClose, date }: ModalProps) => {
-  const [list, setList] = useState<List[]>([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // 로컬스토리지에서 데이터 패칭
-  const fetchData = () => {
-    const data = localStorage.getItem(date);
-    let result: List[] = [];
-    if (data !== null) {
-      result = JSON.parse(data);
-      if (Array.isArray(result)) {
-        setList(result);
-      }
-    }
-    return result;
-  };
-
+const Modal = ({ onClose, date, updateList, list }: ModalProps) => {
   // //랜덤 아이디 생성
   const generateUniqueId = () => {
     return Math.floor(Math.random() * 1000000);
@@ -45,17 +33,21 @@ const Modal = ({ onClose, date }: ModalProps) => {
 
   // 로컬스토리지에 추가
   const addTodo = (newTodo: string) => {
-    const updatedList: List[] = [
-      ...list,
-      { id: generateUniqueId(), data: newTodo, ischeck: false },
-    ];
-    setList(updatedList);
-    localStorage.setItem(date, JSON.stringify(updatedList));
+    const newList: List = {
+      id: generateUniqueId(),
+      data: newTodo,
+      ischeck: false,
+    };
+    if (list !== null) {
+      updateList([...list, newList]);
+    } else {
+      updateList([newList]);
+    }
   };
 
   const removeTodo = (id: number) => {
     const filteredData = list.filter((item) => item.id !== id);
-    setList(filteredData);
+    updateList(filteredData);
     localStorage.setItem(date, JSON.stringify(filteredData));
   };
 
@@ -63,14 +55,14 @@ const Modal = ({ onClose, date }: ModalProps) => {
     const newData = list.map((item) =>
       item.id === id ? { ...item, ischeck: isDone } : item
     );
-    setList(newData);
+    updateList(newData);
     localStorage.setItem(date, JSON.stringify(newData));
   };
 
   return (
     <ModalContainer>
       <ModalContent>
-        {list.length !== 0 ? (
+        {list !== null ? (
           <TodoList
             list={list}
             removeTodo={removeTodo}

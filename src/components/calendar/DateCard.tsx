@@ -40,6 +40,10 @@ const DateCard = ({ props }: DateCard) => {
     setModal(true);
   };
 
+  const updateList = (data:List[]) =>{
+    setList(data)
+    localStorage.setItem(`${props.year}${props.month}${props.date}`, JSON.stringify(data));
+  }
   // 로컬스토리지에서 데이터 패칭
   const fetchData = () => {
     const date = `${props.year}${props.month}${props.date}`;
@@ -76,6 +80,8 @@ const DateCard = ({ props }: DateCard) => {
           <Modal
             onClose={handleCloseModal}
             date={`${props.year}${props.month}${props.date}`}
+            list={list}
+            updateList={updateList}
           />
         </ModalPortal>
       )}
