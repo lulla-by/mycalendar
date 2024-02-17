@@ -21,7 +21,7 @@ interface List {
   ischeck: boolean;
 }
 
-const Modal = ({ onClose, date, updateList, list }: ModalProps) => {
+const Modal = ({ onClose,updateList, list }: ModalProps) => {
   // //랜덤 아이디 생성
   const generateUniqueId = () => {
     return Math.floor(Math.random() * 1000000);
@@ -48,7 +48,6 @@ const Modal = ({ onClose, date, updateList, list }: ModalProps) => {
   const removeTodo = (id: number) => {
     const filteredData = list.filter((item) => item.id !== id);
     updateList(filteredData);
-    localStorage.setItem(date, JSON.stringify(filteredData));
   };
 
   const isDoneTodo = (id: number, isDone: boolean) => {
@@ -56,7 +55,6 @@ const Modal = ({ onClose, date, updateList, list }: ModalProps) => {
       item.id === id ? { ...item, ischeck: isDone } : item
     );
     updateList(newData);
-    localStorage.setItem(date, JSON.stringify(newData));
   };
 
   return (
