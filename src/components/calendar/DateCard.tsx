@@ -40,10 +40,13 @@ const DateCard = ({ props }: DateCard) => {
     setModal(true);
   };
 
-  const updateList = (data:List[]) =>{
-    setList(data)
-    localStorage.setItem(`${props.year}${props.month}${props.date}`, JSON.stringify(data));
-  }
+  const updateList = (data: List[]) => {
+    setList(data);
+    localStorage.setItem(
+      `${props.year}${props.month}${props.date}`,
+      JSON.stringify(data)
+    );
+  };
   // 로컬스토리지에서 데이터 패칭
   const fetchData = () => {
     const date = `${props.year}${props.month}${props.date}`;
@@ -62,12 +65,16 @@ const DateCard = ({ props }: DateCard) => {
     propsNow.getDate() === now.getDate();
   return (
     <>
-      <CardContainer istoday={istoday.toString()} props={props} onClick={handleOpenModal}>
+      <CardContainer
+        istoday={istoday.toString()}
+        props={props}
+        onClick={handleOpenModal}
+      >
         <DateText props={props}>{props.date}</DateText>
         {list !== null ? (
           <ListContainer>
             {list.map((item) => (
-              <div>{item.data}</div>
+              <div key={item.id}>{item.data}</div>
             ))}
           </ListContainer>
         ) : (
@@ -105,8 +112,8 @@ const CardContainer = styled.div<StyledProps2>`
       ? '#868e96'
       : theme.colors.main};
   border: ${({ istoday, theme }) =>
-    istoday ==="true" ? `3px solid ${theme.colors.main}` : null};
-  border-radius: ${({ istoday }) => (istoday ==="true" ? `5px` : null)};
+    istoday === 'true' ? `3px solid ${theme.colors.main}` : null};
+  border-radius: ${({ istoday }) => (istoday === 'true' ? `5px` : null)};
   box-shadow: 1px 1px 2px 1px #ced4da;
   border-radius: 5px;
   cursor: pointer;
@@ -131,5 +138,5 @@ const DateText = styled.p<StyledProps>`
 `;
 
 const ListContainer = styled.ul`
-  display: block
-`
+  display: block;
+`;
