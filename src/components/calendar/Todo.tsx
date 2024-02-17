@@ -18,6 +18,7 @@ const Todo = ({ item, removeTodo, isDoneTodo }: TodoProps) => {
     <TodoContainer>
       <input
         type="checkbox"
+        checked={item.ischeck}
         onChange={(e) => {
           isDoneTodo(item.id, e.target.checked);
         }}
