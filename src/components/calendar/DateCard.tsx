@@ -43,10 +43,12 @@ const DateCard = ({ props }: DateCard) => {
 
   const updateList = (data: List[]) => {
     setList(data);
-    localStorage.setItem(
-      `${props.year}${props.month}${props.date}`,
-      JSON.stringify(data)
-    );
+    const key = `${props.year}${props.month}${props.date}`;
+    if (data.length === 0) {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
   };
   // 로컬스토리지에서 데이터 패칭
   const fetchData = () => {
@@ -75,7 +77,9 @@ const DateCard = ({ props }: DateCard) => {
         {list !== null ? (
           <ListContainer>
             {list.map((item) => (
-              <TodoText ischeck={item.ischeck} key={item.id}>{item.data}</TodoText>
+              <TodoText ischeck={item.ischeck} key={item.id}>
+                {item.data}
+              </TodoText>
             ))}
           </ListContainer>
         ) : (
@@ -143,5 +147,6 @@ const ListContainer = styled.ul`
 `;
 
 const TodoText = styled.p<CheckedProps>`
-  text-decoration: ${({ ischeck }) => (ischeck ===true? 'line-through' : 'none')};
+  text-decoration: ${({ ischeck }) =>
+    ischeck === true ? 'line-through' : 'none'};
 `;
