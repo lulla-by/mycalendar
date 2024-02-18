@@ -48,7 +48,7 @@ const Layout = (props: LayoutProps) => {
         <LayountContainer>
           <DateContext.Provider value={{ propsMonth, propsYear }}>
             <Header onChangeMonth={changeMonth} onChangeYear={changeYear} />
-            <main>{props.children}</main>
+            <MainContents>{props.children}</MainContents>
           </DateContext.Provider>
         </LayountContainer>
       </ThemeProvider>
@@ -61,14 +61,16 @@ export default Layout;
 const LayountContainer = styled.div`
   width: 1200px;
   margin: auto;
-border: 2px solid #dee2e6;
-border-radius: 5px;
-  main {
-    display: flex;
-  }
+  border: 2px solid #dee2e6;
+  border-radius: 5px;
 
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const MainContents = styled.div`
+  display: flex;
+  gap: 10px;
 `;
