@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 interface FormProps {
   onSubmit: (todo: string) => void;
+  placeholder:string
 }
 
-const TodoForm = ({ onSubmit }: FormProps) => {
+const TodoForm = ({ onSubmit,placeholder }: FormProps) => {
   const [todo, setTodo] = useState('');
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +30,7 @@ const TodoForm = ({ onSubmit }: FormProps) => {
         value={todo}
         type="text"
         onChange={changeHandler}
-        placeholder="할 일을 입력해주세요"
+        placeholder={placeholder}
       />
       <TodoButton type="submit">+</TodoButton>
     </TodoFormContainer>
