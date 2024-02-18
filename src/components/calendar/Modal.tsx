@@ -62,15 +62,14 @@ const Modal = ({ onClose, updateList, list }: ModalProps) => {
       <ModalContainer onClick={onClose}></ModalContainer>
       <ModalContent>
         <TodoForm onSubmit={handleFormSubmit} />
-        {list !== null ? (
+        {list !== null && (
           <TodoList
             list={list}
             removeTodo={removeTodo}
             isDoneTodo={isDoneTodo}
           />
-        ) : (
-          <div>할 일이 없습니다.</div>
         )}
+        {list === null &&<InforText>할 일을 추가해 보세요</InforText>}
       </ModalContent>
     </Wrapper>
   );
@@ -101,3 +100,11 @@ const ModalContent = styled.div`
   border-radius: 5px;
   position: absolute;
 `;
+
+
+const InforText = styled.p`
+  text-align: center;
+  color:  ${({ theme }) => theme.colors.median};
+  font-weight: 600;
+  margin-top: 20px;
+`
