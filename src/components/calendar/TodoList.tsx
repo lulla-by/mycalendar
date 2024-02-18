@@ -10,11 +10,14 @@ interface TodoListProps {
   list: List[];
   removeTodo: (id:number) => void;
   isDoneTodo:(id:number,isDone:boolean) => void;
+  height:number
 }
 
-const TodoList = ({ list,removeTodo,isDoneTodo }: TodoListProps) => {
+type StyledProps = Pick<TodoListProps,"height">
+
+const TodoList = ({ list,removeTodo,isDoneTodo,height }: TodoListProps) => {
   return (
-    <TodoListContainer>
+    <TodoListContainer height={height}>
       {list.map((item) => (
         <Todo key={item.id} item={item} removeTodo={removeTodo} isDoneTodo={isDoneTodo}/>
       ))}
@@ -24,13 +27,13 @@ const TodoList = ({ list,removeTodo,isDoneTodo }: TodoListProps) => {
 
 export default TodoList;
 
-const TodoListContainer = styled.ul`
+const TodoListContainer = styled.ul<StyledProps>`
   text-decoration: none;
   padding: 10px;
   width: 100%;
   overflow: scroll;
 overflow-x:hidden;
-height: 85%;
+height:  ${({ height }) => `${height}%`};
 
 &::-webkit-scrollbar {
     width: 8px;
