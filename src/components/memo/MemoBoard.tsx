@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoForm from '../calendar/TodoForm';
 import TodoList from '../calendar/TodoList';
@@ -61,7 +61,7 @@ const MemoBoard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   return (
     <Container>
       <ListContainer>
