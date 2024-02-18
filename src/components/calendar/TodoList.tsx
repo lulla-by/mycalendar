@@ -28,5 +28,21 @@ const TodoListContainer = styled.ul`
   text-decoration: none;
   padding: 10px;
   width: 100%;
+  overflow: scroll;
+overflow-x:hidden;
+height: 85%;
 
+&::-webkit-scrollbar {
+    width: 8px;
+}
+
+&::-webkit-scrollbar-thumb {
+    height: 30%;
+    background:${({ theme }) => theme.colors.median}; 
+    border-radius: 10px;
+}
+
+&::-webkit-scrollbar-track {
+    background:${({ theme }) => theme.colors.light};
+}
 `;

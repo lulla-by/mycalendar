@@ -21,7 +21,7 @@ interface List {
   ischeck: boolean;
 }
 
-const Modal = ({ onClose,updateList, list }: ModalProps) => {
+const Modal = ({ onClose, updateList, list }: ModalProps) => {
   // //랜덤 아이디 생성
   const generateUniqueId = () => {
     return Math.floor(Math.random() * 1000000);
@@ -58,7 +58,8 @@ const Modal = ({ onClose,updateList, list }: ModalProps) => {
   };
 
   return (
-    <ModalContainer>
+    <Wrapper>
+      <ModalContainer onClick={onClose}></ModalContainer>
       <ModalContent>
         <TodoForm onSubmit={handleFormSubmit} />
         {list !== null ? (
@@ -70,48 +71,33 @@ const Modal = ({ onClose,updateList, list }: ModalProps) => {
         ) : (
           <div>할 일이 없습니다.</div>
         )}
-        <button onClick={onClose}>닫기</button>
       </ModalContent>
-    </ModalContainer>
+    </Wrapper>
   );
 };
 
 export default Modal;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+`;
 const ModalContainer = styled.div`
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  left: 0;
-  top: 0;
   height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   backdrop-filter: blur(0.1rem);
+  cursor: pointer;
 `;
 
 const ModalContent = styled.div`
-  background-color:${({ theme }) => theme.colors.base} ;
+  background-color: ${({ theme }) => theme.colors.base};
   padding: 1rem;
   width: 400px;
   height: 500px;
   border-radius: 5px;
-  
-overflow: scroll;
-overflow-x:hidden;
-
-&::-webkit-scrollbar {
-    width: 8px;
-}
-
-&::-webkit-scrollbar-thumb {
-    height: 30%;
-    background:${({ theme }) => theme.colors.median}; 
-    border-radius: 10px;
-}
-
-&::-webkit-scrollbar-track {
-    background:${({ theme }) => theme.colors.light};
-}
+  position: absolute;
 `;
