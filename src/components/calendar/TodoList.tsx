@@ -1,4 +1,4 @@
-import Todo from './Todo';
+import Todo from './TodoItem';
 import styled from 'styled-components';
 
 interface List {
@@ -26,5 +26,7 @@ export default TodoList;
 
 const TodoListContainer = styled.ul`
   text-decoration: none;
-  background-color: lightgreen;
+  padding: 10px;
+  width: 100%;
+
 `;

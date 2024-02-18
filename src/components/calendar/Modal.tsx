@@ -97,4 +97,21 @@ const ModalContent = styled.div`
   width: 400px;
   height: 500px;
   border-radius: 5px;
+  
+overflow: scroll;
+overflow-x:hidden;
+
+&::-webkit-scrollbar {
+    width: 8px;
+}
+
+&::-webkit-scrollbar-thumb {
+    height: 30%;
+    background:${({ theme }) => theme.colors.median}; 
+    border-radius: 10px;
+}
+
+&::-webkit-scrollbar-track {
+    background:${({ theme }) => theme.colors.light};
+}
 `;
