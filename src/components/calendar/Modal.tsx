@@ -64,6 +64,7 @@ const Modal = ({ onClose, updateList, list }: ModalProps) => {
         <TodoForm onSubmit={handleFormSubmit} />
         {list !== null && (
           <TodoList
+          height={85}
             list={list}
             removeTodo={removeTodo}
             isDoneTodo={isDoneTodo}
