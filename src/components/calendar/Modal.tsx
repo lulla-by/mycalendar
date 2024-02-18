@@ -60,6 +60,7 @@ const Modal = ({ onClose,updateList, list }: ModalProps) => {
   return (
     <ModalContainer>
       <ModalContent>
+        <TodoForm onSubmit={handleFormSubmit} />
         {list !== null ? (
           <TodoList
             list={list}
@@ -69,7 +70,6 @@ const Modal = ({ onClose,updateList, list }: ModalProps) => {
         ) : (
           <div>할 일이 없습니다.</div>
         )}
-        <TodoForm onSubmit={handleFormSubmit} />
         <button onClick={onClose}>닫기</button>
       </ModalContent>
     </ModalContainer>
@@ -92,7 +92,7 @@ const ModalContainer = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: white;
+  background-color:${({ theme }) => theme.colors.base} ;
   padding: 1rem;
   width: 400px;
   height: 500px;
