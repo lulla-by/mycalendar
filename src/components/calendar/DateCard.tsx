@@ -74,7 +74,7 @@ const DateCard = ({ props }: DateCard) => {
         onClick={handleOpenModal}
       >
         <DateText props={props}>{props.date}</DateText>
-        {list !== null ? (
+        {list !== null && (
           <ListContainer>
             {list.map((item) => (
               <TodoText ischeck={item.ischeck} key={item.id}>
@@ -82,9 +82,8 @@ const DateCard = ({ props }: DateCard) => {
               </TodoText>
             ))}
           </ListContainer>
-        ) : (
-          <></>
         )}
+        {list !== null && list.length > 3 && <div>↓</div>}
       </CardContainer>
 
       {modal && (
@@ -104,7 +103,6 @@ const DateCard = ({ props }: DateCard) => {
 export default DateCard;
 
 const CardContainer = styled.div<StyledProps2>`
-  height: 100%;
   display: inline-block;
   background-color: ${({ props, theme }) =>
     props.state === 'prev' || props.state === 'next'
@@ -144,9 +142,18 @@ const DateText = styled.p<StyledProps>`
 
 const ListContainer = styled.ul`
   display: block;
+  overflow: hidden;
+  height: 60px;
+  width: calc(100% - (30px));
+  margin: auto;
 `;
 
 const TodoText = styled.p<CheckedProps>`
   text-decoration: ${({ ischeck }) =>
     ischeck === true ? 'line-through' : 'none'};
+  height: 20px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
