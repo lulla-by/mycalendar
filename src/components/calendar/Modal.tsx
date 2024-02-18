@@ -61,7 +61,7 @@ const Modal = ({ onClose, updateList, list }: ModalProps) => {
     <Wrapper>
       <ModalContainer onClick={onClose}></ModalContainer>
       <ModalContent>
-        <TodoForm onSubmit={handleFormSubmit} />
+        <TodoForm onSubmit={handleFormSubmit} placeholder="할 일을 추가해 주세요"/>
         {list !== null && (
           <TodoList
           height={85}
@@ -70,7 +70,7 @@ const Modal = ({ onClose, updateList, list }: ModalProps) => {
             isDoneTodo={isDoneTodo}
           />
         )}
-        {list === null &&<InforText>할 일을 추가해 보세요</InforText>}
+        {list === null &&<InforText>작성한 TODO가 없어요!</InforText>}
       </ModalContent>
     </Wrapper>
   );

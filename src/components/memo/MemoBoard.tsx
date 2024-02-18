@@ -61,8 +61,7 @@ const MemoBoard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(list);
-
+  
   return (
     <Container>
       <ListContainer>
@@ -75,7 +74,7 @@ const MemoBoard = () => {
           />
         )}
       </ListContainer>
-      <TodoForm onSubmit={getData} />
+      <TodoForm onSubmit={getData} placeholder='목표를 작성해 주세요'/>
     </Container>
   );
 };
