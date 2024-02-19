@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoForm from '../calendar/TodoForm';
 import TodoList from '../calendar/TodoList';
-import { List } from '../../types/types';
+import { ListItem } from '../../types/types';
 
 
 const MemoBoard = () => {
-  const [list, setList] = useState<List[]>([]);
+  const [list, setList] = useState<ListItem[]>([]);
 
-  const updateList = (data: List[]) => {
+  const updateList = (data: ListItem[]) => {
     setList(data);
     if (data.length === 0) {
       localStorage.removeItem('할일');
@@ -18,7 +18,7 @@ const MemoBoard = () => {
   };
 
   const getData = (todo: string) => {
-    const newList: List = {
+    const newList: ListItem = {
       id: generateUniqueId(),
       data: todo,
       ischeck: false,

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
-import { List } from '../../types/types';
+import { ListItem } from '../../types/types';
 
 interface ModalProps {
   onClose: () => void;
   date: string;
-  list: List[];
-  updateList: (data: List[]) => void;
+  list: ListItem[];
+  updateList: (data: ListItem[]) => void;
 }
 
 const Modal = ({ onClose, updateList, list }: ModalProps) => {
@@ -22,7 +22,7 @@ const Modal = ({ onClose, updateList, list }: ModalProps) => {
 
   // 로컬스토리지에 추가
   const addTodo = (newTodo: string) => {
-    const newList: List = {
+    const newList: ListItem = {
       id: generateUniqueId(),
       data: newTodo,
       ischeck: false,
