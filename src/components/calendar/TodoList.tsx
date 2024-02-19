@@ -1,11 +1,7 @@
+import { List } from '../../types/types';
 import Todo from './TodoItem';
 import styled from 'styled-components';
 
-interface List {
-  id: number;
-  data: string;
-  ischeck:boolean;
-}
 interface TodoListProps {
   list: List[];
   removeTodo: (id:number) => void;

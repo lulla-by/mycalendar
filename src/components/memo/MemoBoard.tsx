@@ -2,11 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TodoForm from '../calendar/TodoForm';
 import TodoList from '../calendar/TodoList';
-interface List {
-  id: number;
-  data: string;
-  ischeck: boolean;
-}
+import { List } from '../../types/types';
+
 
 const MemoBoard = () => {
   const [list, setList] = useState<List[]>([]);

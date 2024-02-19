@@ -2,26 +2,17 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
 import Modal from './Modal';
+import { Date, List } from '../../types/types';
 
 interface DateCard {
-  props: {
-    date: number;
-    state: string;
-    year: number;
-    month: number;
-  };
+  props: Date;
 }
 
-interface List {
-  id: number;
-  data: string;
-  ischeck: boolean;
-}
+type DateCardProps = Pick<DateCard, 'props'>;
 
-type StyledProps = Pick<DateCard, 'props'>;
 type CheckedProps = Pick<List, `ischeck`>;
 
-interface StyledProps2 extends StyledProps {
+interface DateCardWithIsTodayProps extends DateCardProps {
   istoday: string;
 }
 const DateCard = ({ props }: DateCard) => {
@@ -102,7 +93,7 @@ const DateCard = ({ props }: DateCard) => {
 
 export default DateCard;
 
-const CardContainer = styled.div<StyledProps2>`
+const CardContainer = styled.div<DateCardWithIsTodayProps>`
   display: inline-block;
   background-color: ${({ props, theme }) =>
     props.state === 'prev' || props.state === 'next'
@@ -122,7 +113,7 @@ const CardContainer = styled.div<StyledProps2>`
   cursor: pointer;
 `;
 
-const DateText = styled.p<StyledProps>`
+const DateText = styled.p<DateCardProps>`
   display: block;
   background-color: ${({ theme, props }) =>
     props.state === 'prev' || props.state === 'next'

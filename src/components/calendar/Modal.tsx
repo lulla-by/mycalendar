@@ -1,24 +1,13 @@
 import styled from 'styled-components';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
-
-interface List {
-  id: number;
-  data: string;
-  ischeck: boolean;
-}
+import { List } from '../../types/types';
 
 interface ModalProps {
   onClose: () => void;
   date: string;
   list: List[];
   updateList: (data: List[]) => void;
-}
-
-interface List {
-  id: number;
-  data: string;
-  ischeck: boolean;
 }
 
 const Modal = ({ onClose, updateList, list }: ModalProps) => {

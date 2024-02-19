@@ -1,11 +1,8 @@
 import styled from 'styled-components';
+import { List } from '../../types/types';
 
 interface TodoProps {
-  item: {
-    data: string;
-    id: number;
-    ischeck: boolean;
-  };
+  item: List;
   removeTodo: (id: number) => void;
   isDoneTodo: (id: number, isDone: boolean) => void;
 }
