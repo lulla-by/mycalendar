@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
 import Modal from './Modal';
-import { Date, List } from '../../types/types';
+import {DateItem, ListItem } from '../../types/types';
 
 interface DateCard {
-  props: Date;
+  props: DateItem;
 }
 
 type DateCardProps = Pick<DateCard, 'props'>;
 
-type CheckedProps = Pick<List, `ischeck`>;
+type CheckedProps = Pick<ListItem, `ischeck`>;
 
 interface DateCardWithIsTodayProps extends DateCardProps {
   istoday: string;
 }
 const DateCard = ({ props }: DateCard) => {
-  const [list, setList] = useState<List[]>([]);
+  const [list, setList] = useState<ListItem[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -32,7 +32,7 @@ const DateCard = ({ props }: DateCard) => {
     setModal(true);
   };
 
-  const updateList = (data: List[]) => {
+  const updateList = (data: ListItem[]) => {
     setList(data);
     const key = `${props.year}${props.month}${props.date}`;
     if (data.length === 0) {

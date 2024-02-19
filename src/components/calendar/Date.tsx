@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { DateContext } from '../../context/DateContext';
 import styled from 'styled-components';
 import DateCard from './DateCard';
-import { Date } from '../../types/types';
+import { DateItem } from '../../types/types';
 
 const DateRender = () => {
   const { propsMonth: month, propsYear: year } = useContext(DateContext);
 
   // 이번달 정보
-  const currentMonthArray: Date[] = [];
+  const currentMonthArray: DateItem[] = [];
   // 이번달 시작일
   const currentMonthLast = new Date(year, month, 0);
   const currentMonthLastDate = currentMonthLast.getDate();
@@ -18,7 +18,7 @@ const DateRender = () => {
   const currentMonthFirstDate = currentMonthFirst.getDay();
 
   // 이전달 정보
-  const prevMonthArray: Date[] = [];
+  const prevMonthArray: DateItem[] = [];
   // 이전달 마지막일
   const previousMonthLast = new Date(year, month - 1, 0);
   const previousMonthLastDate = previousMonthLast.getDate();
