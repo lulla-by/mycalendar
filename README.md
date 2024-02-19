@@ -1,8 +1,8 @@
-# My Calandar
+# 📆 My Calandar
 
 ## 소개
 
-Todo List 기능을 제공하는 캘린더 웹사이트 입니다
+Todo List 기능을 제공하는 캘린더 웹사이트 입니다!
 
 <a href="https://mycalendar-eight.vercel.app/">My Calandar 바로가기</a> 
 
