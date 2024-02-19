@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Calendar from './components/calendar/Calendar';
 import MemoBoard from './components/memo/MemoBoard';
 import { RecoilRoot } from 'recoil';
+import './assets/fonts/fonts.css'
 
 function App() {
   return (

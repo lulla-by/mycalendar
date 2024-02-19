@@ -63,11 +63,11 @@ const LayountContainer = styled.div`
   margin: auto;
   border: 2px solid #dee2e6;
   border-radius: 5px;
-
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+ font-family: "Pretendard-Regular" ;
 `;
 
 const MainContents = styled.div`

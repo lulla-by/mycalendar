@@ -100,6 +100,7 @@ const ModalContent = styled.div`
   height: 500px;
   border-radius: 5px;
   position: absolute;
+  font-family: "Pretendard-Regular" ;
 `;
 
 
