@@ -4,7 +4,7 @@
 
 Todo List 기능을 제공하는 캘린더 웹사이트 입니다
 
-<a href="mycalendar-eight.vercel.app">My Calandar 바로가기</a> 
+<a href="https://mycalendar-eight.vercel.app/">My Calandar 바로가기</a> 
 
 ## 기간
 
