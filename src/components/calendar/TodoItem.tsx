@@ -24,7 +24,7 @@ const Todo = ({ item, removeTodo, isDoneTodo }: TodoProps) => {
         onClick={() => {
           isDoneTodo(item.id, !item.ischeck);
         }}
-        ischeck={item.ischeck.toString()}
+        ischeck={item.ischeck ? "1":"0"}
       >
         {item.data}
       </TodoText>
@@ -51,7 +51,7 @@ const TodoContainer = styled.li`
 
 const TodoText = styled.p<StyledProps>`
   text-decoration: ${({ ischeck }) =>
-    ischeck === 'true' ? 'line-through' : 'none'};
+    ischeck === '1' ? 'line-through' : 'none'};
   width: 80%;
   cursor: pointer;
   text-align: center;

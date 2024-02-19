@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
 import Modal from './Modal';
-import {DateItem, ListItem } from '../../types/types';
+import { DateItem, ListItem } from '../../types/types';
 
 interface DateCard {
   props: DateItem;
@@ -60,7 +60,7 @@ const DateCard = ({ props }: DateCard) => {
   return (
     <>
       <CardContainer
-        istoday={istoday.toString()}
+        istoday={istoday ? '1' : '0'}
         props={props}
         onClick={handleOpenModal}
       >
@@ -106,8 +106,8 @@ const CardContainer = styled.div<DateCardWithIsTodayProps>`
       ? '#868e96'
       : theme.colors.main};
   border: ${({ istoday, theme }) =>
-    istoday === 'true' ? `3px solid ${theme.colors.main}` : null};
-  border-radius: ${({ istoday }) => (istoday === 'true' ? `5px` : null)};
+    istoday === '1' ? `3px solid ${theme.colors.main}` : 'none'};
+  border-radius: ${({ istoday }) => (istoday === '1' ? '5px' : 'none')};
   box-shadow: 1px 1px 2px 1px #ced4da;
   border-radius: 5px;
   cursor: pointer;
