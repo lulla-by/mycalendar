@@ -10,7 +10,9 @@ interface DateCard {
 
 type DateCardProps = Pick<DateCard, 'props'>;
 
-type CheckedProps = Pick<ListItem, `ischeck`>;
+interface CheckedProps {
+  ischeck : "1" | "0";
+}
 
 interface DateCardWithIsTodayProps extends DateCardProps {
   istoday: string;
@@ -68,7 +70,7 @@ const DateCard = ({ props }: DateCard) => {
         {list !== null && (
           <ListContainer>
             {list.map((item) => (
-              <TodoText ischeck={item.ischeck} key={item.id}>
+              <TodoText ischeck={item.ischeck?"1":"0"} key={item.id}>
                 {item.data}
               </TodoText>
             ))}
@@ -141,7 +143,7 @@ const ListContainer = styled.ul`
 
 const TodoText = styled.p<CheckedProps>`
   text-decoration: ${({ ischeck }) =>
-    ischeck === true ? 'line-through' : 'none'};
+    ischeck === "1" ? 'line-through' : 'none'};
   height: 20px;
   font-weight: 600;
   overflow: hidden;
